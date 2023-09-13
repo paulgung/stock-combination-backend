@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Combination {
+  id    Int     @id @default(autoincrement())
+  combinationName   String  @default("")
+  // 一对多
+  subCombinations   SubCombination[] @relation("subCombinations")
+}
+
+model SubCombination {
+  id    Int    @id @unique @default(autoincrement())
+  subCombinationName  String  @default("")
+  // 一对多
+  combinationId       Int?
+  combination         Combination?   @relation("subCombinations", fields: [combinationId], references: [id])
+  stocks              Stocks[] @relation("stocks")
+}
+
+model Stocks {
+  id          Int     @id @unique @default(autoincrement())
+  stockName   String  @default("")
+  stockCode   String? @default("")
+  stockPrice  String? @default("")
+  stockGains  String? @default("")
+  stockUrl    String? @default("")
+  // 一对多对多
+  subCombinationId      Int?
+  subCombination SubCombination?   @relation("stocks", fields: [subCombinationId], references: [id])
+}
