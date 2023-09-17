@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateThDto } from './dto/create-th.dto';
 import { UpdateThDto } from './dto/update-th.dto';
-// import { PrismaService } from '../prisma.service';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
