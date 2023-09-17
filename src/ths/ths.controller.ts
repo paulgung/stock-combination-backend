@@ -51,6 +51,7 @@ export class ThsController {
     return this.thsService.findSkipSubcombination(
       parseInt(query.pageSize),
       parseInt(query.pageNo),
+      parseInt(query.combinationId),
     );
   }
 
@@ -60,6 +61,7 @@ export class ThsController {
     return this.thsService.findSkipStocks(
       parseInt(query.pageSize),
       parseInt(query.pageNo),
+      parseInt(query.subCombinationId),
     );
   }
 }
