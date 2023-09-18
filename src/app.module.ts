@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaService } from './prisma.service';
 import { ThsModule } from './ths/ths.module';
-import { cors } from 'cors';
+import * as cors from 'cors';
 
 @Module({
   imports: [ThsModule],
