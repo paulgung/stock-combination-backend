@@ -31,9 +31,11 @@ export class ThsService {
   async findSkipCombination(pageSize: number, pageNo: number) {
     const total = await prisma.combination.count();
 
+    // 对pageNo的空值做处理
+    const _pageNo = pageNo ? pageNo : 1;
     const data = await prisma.combination.findMany({
-      skip: pageSize * (pageNo - 1),
-      take: pageSize,
+      skip: pageSize ? pageSize * (_pageNo - 1) : 0,
+      take: pageSize ? pageSize : 999999,
     });
     const success = true;
     return { data, success, total };
@@ -58,9 +60,12 @@ export class ThsService {
     const total = await prisma.subCombination.count({
       where: whereCondition,
     });
+
+    // 对pageNo的空值做处理
+    const _pageNo = pageNo ? pageNo : 1;
     const data = await prisma.subCombination.findMany({
-      skip: pageSize * (pageNo - 1),
-      take: pageSize,
+      skip: pageSize ? pageSize * (_pageNo - 1) : 0,
+      take: pageSize ? pageSize : 999999,
       where: whereCondition,
     });
     const success = true;
@@ -85,9 +90,12 @@ export class ThsService {
     const total = await prisma.stocks.count({
       where: whereCondition,
     });
+
+    // 对pageNo的空值做处理
+    const _pageNo = pageNo ? pageNo : 1;
     const data = await prisma.stocks.findMany({
-      skip: pageSize * (pageNo - 1),
-      take: pageSize,
+      skip: pageSize ? pageSize * (_pageNo - 1) : 0,
+      take: pageSize ? pageSize : 999999,
       where: whereCondition,
     });
     const success = true;
