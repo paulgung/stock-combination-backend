@@ -63,6 +63,7 @@ export class ThsController {
       parseInt(query.pageSize),
       parseInt(query.pageNo),
       parseInt(query.subCombinationId),
+      parseInt(query.combinationId),
     );
   }
 

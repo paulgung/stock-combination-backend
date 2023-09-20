@@ -77,13 +77,23 @@ export class ThsService {
     pageSize: number,
     pageNo: number,
     subCombinationId: number,
+    combinationId: number,
   ) {
     // 条件查询
     let whereCondition = {};
+    // 按照子组合ID查询
     if (subCombinationId) {
       whereCondition = {
         subCombinationId: {
           equals: subCombinationId,
+        },
+      };
+    }
+    // 按照父组合ID全量查询
+    if (combinationId) {
+      whereCondition = {
+        combinationId: {
+          equals: combinationId,
         },
       };
     }
