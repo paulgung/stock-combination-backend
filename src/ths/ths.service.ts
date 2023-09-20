@@ -101,4 +101,79 @@ export class ThsService {
     const success = true;
     return { data, success, total };
   }
+
+  // 添加组合数据
+  async addCombination(data) {
+    console.log('弓少旭想看看data', data);
+    return await prisma.combination.create({
+      data,
+    });
+  }
+
+  // 添加子组合数据
+  async addSubcombination(data) {
+    console.log('弓少旭想看看data', data);
+    return await prisma.subCombination.create({
+      data,
+    });
+  }
+
+  // 添加股票数据
+  async addStocks(data) {
+    console.log('弓少旭想看看data', data);
+    return await prisma.stocks.create({
+      data,
+    });
+  }
+
+  // 修改组合数据
+  async updateCombination(id, data) {
+    console.log('弓少旭想看看修改的id和data', id, data);
+    return prisma.combination.update({
+      where: { id },
+      data,
+    });
+  }
+
+  // 修改子组合数据
+  async updateSubcombination(id, data) {
+    console.log('弓少旭想看看修改的id和data', id, data);
+    return prisma.subCombination.update({
+      where: { id },
+      data,
+    });
+  }
+
+  // 修改股票数据
+  async updateStocks(id, data) {
+    console.log('弓少旭想看看修改的id和data', id, data);
+    return prisma.stocks.update({
+      where: { id },
+      data,
+    });
+  }
+
+  // 删除组合数据
+  async deleteCombination(id) {
+    console.log('弓少旭想看看删除的id', id);
+    return prisma.combination.delete({
+      where: { id },
+    });
+  }
+
+  // 删除子组合数据
+  async deleteSubcombination(id) {
+    console.log('弓少旭想看看删除的id', id);
+    return prisma.subCombination.delete({
+      where: { id },
+    });
+  }
+
+  // 删除股票数据
+  async deleteStocks(id) {
+    console.log('弓少旭想看看删除的id', id);
+    return prisma.stocks.delete({
+      where: { id },
+    });
+  }
 }
