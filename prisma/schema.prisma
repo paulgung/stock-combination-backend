@@ -28,6 +28,7 @@ model SubCombination {
 model Stocks {
   id                  Int             @id @unique @default(autoincrement())
   stockName           String          @default("")
+  marketCode          String?         @default("")
   stockCode           String?         @default("")
   stockPrice          String?         @default("")
   stockGains          String?         @default("")
