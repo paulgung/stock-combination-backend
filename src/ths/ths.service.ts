@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateThDto } from './dto/create-th.dto';
 import { UpdateThDto } from './dto/update-th.dto';
 import { PrismaClient } from '@prisma/client';
+import axios from 'axios';
 
 const prisma = new PrismaClient();
 
@@ -185,5 +186,33 @@ export class ThsService {
     return prisma.stocks.delete({
       where: { id },
     });
+  }
+
+  async aiErrorStackParse() {
+    // 错误栈
+    const error_stack = `Uncaught (in promise) Error: Unknown Component: interaction.tooltipThumb
+    at In (helper.js:33:11)
+    at l (library.js:20:32)
+    at eval (library.js:24:16)
+    at CO (plot.js:402:25)
+    at eval (plot.js:195:41)
+    at Generator.next (<anonymous>)
+    at m (plot.js:4:58)`;
+
+    // prompt
+    const prompts =
+      `请你扮演一名前端工程师,现在有一个紧急线上bug,我给你提供错误栈,请你帮我分析bug原因,以下是错误栈:\n` +
+      `${error_stack}\n`;
+
+    const res = await axios.post(
+      'https://frontend.myhexin.com/kingfisher/robot/homeworkChat',
+      {
+        content: prompts,
+        source: 'homework-47-wangxiaolong',
+        token: '610EE45BF-Qtc2VydmU=',
+        temperature: 1,
+      },
+    );
+    return res.data.data;
   }
 }

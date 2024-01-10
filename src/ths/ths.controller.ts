@@ -120,4 +120,10 @@ export class ThsController {
   deleteStocks(@Param('id') id: string) {
     return this.thsService.deleteStocks(parseInt(id));
   }
+
+  // 分页查询股票信息数据
+  @Get('ai-stack')
+  aiStack(@Query() query) {
+    return this.thsService.aiErrorStackParse();
+  }
 }
